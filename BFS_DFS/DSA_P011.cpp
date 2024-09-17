@@ -17,7 +17,7 @@ typedef pair<int, int> pii;
 const int mod = 1e9+7;
 const int maxLL = LLONG_MAX;
 
-vector<vector<int>> visited(1005, vector<int>(1005));
+vector<vector<int>> visited(8, vector<int>(8));
 int n, m, ans = 0; 
 vector<string> a;
 vector<pii> save;
