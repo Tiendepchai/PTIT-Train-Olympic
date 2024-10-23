@@ -1,9 +1,10 @@
 #include <iostream>
 #include <vector>
+#include <bits/stdc++.h>
 using namespace std;
 #define int int64_t
 
-const int mod = 1e9+7;
+int mod;
 
 int mul(int a, int b){
   if (b == 0) return 0;
@@ -42,23 +43,26 @@ class matrix{
     }
 };
 
-matrix a(2, 2);
+matrix base(2, 2);
 
 matrix fast_power(matrix const &aa, int n){
   if (n == 1) return aa;   
   matrix tmp = fast_power(aa, n/2);
-  return (n&1?tmp*tmp*a:tmp*tmp);
+  return (n&1?tmp*tmp*aa:tmp*tmp);
 }
 
-void sol(){
-  int n; cin >> n;
-  auto base = fast_power(a, n);
-  cout << base.arr[0][1] << '\n';
+int fast_pow(int &a, int n){
+  if (n == 1) return a;
+  int tmp = fast_pow(a, n/2);
+  return (n&1?tmp*tmp*a:tmp*tmp);
 }
 
 signed main()
 {
   int t;
-  a.arr[0][0] = a.arr[0][1] = a.arr[1][0] = 1;
-  for (cin >> t; t--;) sol();
+  base.arr[0][0] = base.arr[0][1] = base.arr[1][0] = 1;
+  int a, b, m; cin >> a >> b >> mod;
+  int n = __gcd(a, b);
+  auto ans = fast_power(base, n);
+  cout << ans.arr[0][1] << '\n';
 }
